@@ -25,7 +25,14 @@
          </p>
          <p v-else-if="goals.length > 2">You have too many goals!</p>
          <ul v-else>
-            <li v-for="goal in goals">{{goal}}</li>
+            <!-- Loop through an array -->
+            <li v-for="(goal, index) in goals">{{index + 1 + ". " + goal}}</li>
+         </ul>
+         <ul>
+            <!-- Loop through an object -->
+            <li v-for="(val, key) in {name: 'Tyson', age: 40}">
+               {{key + ": " + val}}
+            </li>
          </ul>
       </section>
    </body>
