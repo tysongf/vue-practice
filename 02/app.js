@@ -3,6 +3,7 @@ const app = Vue.createApp({
       return {
          counter: 0,
          name: "",
+         full_name: "",
       };
    },
    methods: {
@@ -14,6 +15,9 @@ const app = Vue.createApp({
       },
       setName(event) {
          this.name = event.target.value;
+      },
+      setFullName(event, lastName) {
+         this.full_name = event.target.value + " " + lastName;
       },
    },
 });

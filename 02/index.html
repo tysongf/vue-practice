@@ -23,6 +23,8 @@
          <p>Result: {{ counter }}</p>
          <p><input type="text" v-on:input="setName" /></p>
          <p>Name: {{ name }}</p>
+         <p><input type="text" v-on:input="setFullName($event, 'Fritz')" /></p>
+         <p>Full Name: {{full_name}}</p>
       </section>
    </body>
 </html>
