@@ -30,8 +30,8 @@
          </ul>
          <ul>
             <!-- Loop through an object -->
-            <li v-for="(val, key) in {name: 'Tyson', age: 40}">
-               {{key + ": " + val}}
+            <li v-for="(val, key, index) in {name: 'Tyson', age: 40}">
+               {{index + ". " + key + ": " + val}}
             </li>
          </ul>
       </section>
