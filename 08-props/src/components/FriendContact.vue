@@ -5,6 +5,7 @@
       <button @click="toggleDetails">
          {{ detailsAreVisible ? "Hide" : "Show" }} Details
       </button>
+      <button @click="$emit('delete-friend', id)">Delete</button>
       <ul v-if="detailsAreVisible">
          <li>
             <strong>Phone:</strong>
@@ -34,7 +35,7 @@ export default {
       id: { type: String, required: true },
       isFavorite: { type: Boolean, required: false, default: false },
    },
-   emits: ["toggle-favorite"],
+   emits: ["toggle-favorite", "delete-friend"],
    // Custom emitter validation
    // emits: {
    //    "toggle-favorite": function (id) {

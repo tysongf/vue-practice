@@ -8,6 +8,7 @@
       </section>
       <ul>
          <friend-contact
+            @delete-friend="deleteFriend"
             v-for="friend in friends"
             :key="friend.id"
             :id="friend.id"
@@ -27,6 +28,12 @@ export default {
       createFriend(newFriend) {
          newFriend.id = "friend_" + this.friends.length;
          this.friends.push(newFriend);
+      },
+      deleteFriend(friend_id) {
+         console.log("deleteFriend");
+         this.friends = this.friends.filter(
+            (friend) => friend.id !== friend_id
+         );
       },
       toggleFavorite(friend_id) {
          const f = this.friends.find((friend) => friend.id === friend_id);
