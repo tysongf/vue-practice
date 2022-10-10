@@ -19,7 +19,18 @@
 
 <script>
 export default {
-   props: ["name", "phoneNumber", "emailAddress"],
+   props: {
+      name: { type: String, required: true },
+      phoneNumber: { type: String, required: true },
+      emailAddress: {
+         type: String,
+         required: true,
+         validator: function (value) {
+            if (value == "friendo@gmail.com") return false;
+            return true;
+         },
+      },
+   },
    data() {
       return {
          detailsAreVisible: false,
