@@ -21,33 +21,33 @@
             <h2 v-if="monster.hp > 0">Monster Health</h2>
             <h2 v-else>Monster Corpse</h2>
             <div v-if="monster.hp > 0" class="healthbar">
-               <div
-                  class="healthbar__value"
-                  :style="{width: monster.hp + '%' }"
-               >
+               <div class="healthbar__value" :style="monsterBarStyles">
                   {{monster.hp}} / {{monster.hp_max}}
                </div>
             </div>
          </section>
-         <div v-else>Monster Corpse</div>
          <section id="player" class="container" v-if="player.hp > 0">
-            <h2>Your Health</h2>
+            <h2 v-if="player.hp > 0">Your Health</h2>
             <div class="healthbar">
-               <div class="healthbar__value" :style="{width: player.hp + '%'}">
+               <div class="healthbar__value" :style="playerBarStyles">
                   {{player.hp}} / {{player.hp_max}}
                </div>
             </div>
          </section>
-         <div v-else>Player Corpse</div>
          <section id="controls">
-            <button @click="playerAttack">ATTACK</button>
-            <button @click="specialAttack">SPECIAL ATTACK</button>
+            <button @click="playerAttack" :disabled="gameIsOver">ATTACK</button>
+            <button
+               @click="specialAttack"
+               :disabled="player.special < 3 || gameIsOver"
+            >
+               SPECIAL ATTACK {{player.special}}
+            </button>
             <button @click="heal">HEAL</button>
-            <button @click="surrender">SURRENDER</button>
+            <button @click="surrender" :disabled="gameIsOver">SURRENDER</button>
          </section>
          <section id="log" class="container">
             <h2>Battle Log</h2>
-            <ul v-for="log in battle_log">
+            <ul v-for="log in battle_log.slice().reverse()">
                {{log}}
             </ul>
          </section>
