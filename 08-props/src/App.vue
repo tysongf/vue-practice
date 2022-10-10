@@ -5,14 +5,12 @@
       </header>
       <ul>
          <friend-contact
-            name="Friend 1"
-            phone-number="778-278-2848"
-            email-address="friendo@gmail.com"
-         ></friend-contact>
-         <friend-contact
-            name="Pal 2"
-            phone-number="738-578-2158"
-            email-address="pally@gmail.com"
+            v-for="friend in friends"
+            :key="friend.id"
+            :name="friend.name"
+            :phone-number="friend.phone"
+            :email-address="friend.email"
+            :is-favorite="friend.fav"
          ></friend-contact>
       </ul>
    </section>
@@ -28,6 +26,7 @@ export default {
                name: "Manuel Lorenz",
                phone: "0123 45678 90",
                email: "manuel@localhost.com",
+               fav: true,
             },
             {
                id: "julie",
