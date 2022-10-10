@@ -26,7 +26,16 @@
          <p v-else-if="goals.length > 2">You have too many goals!</p>
          <ul v-else>
             <!-- Loop through an array -->
-            <li v-for="(goal, index) in goals">{{index + 1 + ". " + goal}}</li>
+            <li
+               v-for="(goal, index) in goals"
+               @click="removeGoal(index)"
+               v-bind:key="goal"
+            >
+               <!-- BUG: Use the key attribute to avoid the bug below... -->
+               {{index + 1 + ". " + goal}}
+               <!-- BUG: Remove 1st element and its input value will persist to the 2nd when it becomes the first.. -->
+               <input @click.stop value="click here wont remove goal" />
+            </li>
          </ul>
          <ul>
             <!-- Loop through an object -->
