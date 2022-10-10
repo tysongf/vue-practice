@@ -34,6 +34,13 @@ export default {
       id: { type: String, required: true },
       isFavorite: { type: Boolean, required: false, default: false },
    },
+   emits: ["toggle-favorite"],
+   // Custom emitter validation
+   // emits: {
+   //    "toggle-favorite": function (id) {
+   //       return id ? true : false;
+   //    },
+   // },
    data() {
       return {
          detailsAreVisible: false,
