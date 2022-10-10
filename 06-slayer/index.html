@@ -26,9 +26,10 @@
                </div>
             </div>
          </section>
-         <section id="player" class="container" v-if="player.hp > 0">
+         <section id="player" class="container">
             <h2 v-if="player.hp > 0">Your Health</h2>
-            <div class="healthbar">
+            <h2 v-else>Player Corpse</h2>
+            <div v-if="player.hp > 0" class="healthbar">
                <div class="healthbar__value" :style="playerBarStyles">
                   {{player.hp}} / {{player.hp_max}}
                </div>
@@ -42,7 +43,7 @@
             >
                SPECIAL ATTACK {{player.special}}
             </button>
-            <button @click="heal">HEAL</button>
+            <button @click="heal" :disabled="gameIsOver">HEAL</button>
             <button @click="surrender" :disabled="gameIsOver">SURRENDER</button>
          </section>
          <section id="log" class="container">
