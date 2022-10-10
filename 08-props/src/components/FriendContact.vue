@@ -1,6 +1,6 @@
 <template>
    <li>
-      <h2>{{ name }} {{ isFav ? "(Favorite)" : "" }}</h2>
+      <h2>{{ name }} {{ isFavorite ? "(Favorite)" : "" }}</h2>
       <button @click="toggleFavorite">Toggle Fav</button>
       <button @click="toggleDetails">
          {{ detailsAreVisible ? "Hide" : "Show" }} Details
@@ -31,12 +31,12 @@ export default {
             return true;
          },
       },
+      id: { type: String, required: true },
       isFavorite: { type: Boolean, required: false, default: false },
    },
    data() {
       return {
          detailsAreVisible: false,
-         isFav: this.isFavorite,
       };
    },
    methods: {
@@ -44,7 +44,7 @@ export default {
          this.detailsAreVisible = !this.detailsAreVisible;
       },
       toggleFavorite() {
-         this.isFav = !this.isFav;
+         this.$emit("toggle-favorite", this.id);
       },
    },
 };
