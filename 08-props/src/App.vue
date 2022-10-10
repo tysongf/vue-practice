@@ -3,6 +3,9 @@
       <header>
          <h1>My Friends</h1>
       </header>
+      <section>
+         <new-friend @create-friend="createFriend"></new-friend>
+      </section>
       <ul>
          <friend-contact
             v-for="friend in friends"
@@ -21,6 +24,10 @@
 <script>
 export default {
    methods: {
+      createFriend(newFriend) {
+         newFriend.id = "friend_" + this.friends.length;
+         this.friends.push(newFriend);
+      },
       toggleFavorite(friend_id) {
          const f = this.friends.find((friend) => friend.id === friend_id);
          f.fav = !f.fav;
@@ -68,6 +75,9 @@ header {
    text-align: center;
    width: 90%;
    max-width: 40rem;
+}
+section {
+   text-align: center;
 }
 #app ul {
    margin: 0;
