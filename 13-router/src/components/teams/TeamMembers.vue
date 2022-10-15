@@ -10,6 +10,9 @@
          ></user-item>
       </ul>
    </section>
+   <p>
+      <router-link to="/teams/t2">Arbitrary Link to test watcher</router-link>
+   </p>
 </template>
 
 <script>
@@ -27,19 +30,26 @@ export default {
          teamName: "",
       };
    },
+   watch: {
+      $route(newValue) {
+         this.loadTeamMembers(newValue.params.team_id);
+      },
+   },
+   methods: {
+      loadTeamMembers(team_id) {
+         const selectedTeam = this.teams.find((team) => team.id === team_id);
+         const members = selectedTeam.members;
+         const selectedMembers = [];
+         for (const member of members) {
+            const selectedUser = this.users.find((user) => user.id === member);
+            selectedMembers.push(selectedUser);
+         }
+         this.members = selectedMembers;
+         this.teamName = selectedTeam.name;
+      },
+   },
    created() {
-      const team_id = this.$route.params.team_id;
-      console.log(this.teams);
-      console.log(this.users);
-      const selectedTeam = this.teams.find((team) => team.id === team_id);
-      const members = selectedTeam.members;
-      const selectedMembers = [];
-      for (const member of members) {
-         const selectedUser = this.users.find((user) => user.id === member);
-         selectedMembers.push(selectedUser);
-      }
-      this.members = selectedMembers;
-      this.teamName = selectedTeam.name;
+      this.loadTeamMembers(this.$route.params.team_id);
    },
 };
 </script>
